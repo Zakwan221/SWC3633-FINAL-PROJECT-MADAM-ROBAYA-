@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/avif" href="logo-transparent.avif">
+  <title>TiketKita - Events & Venues</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=31">
+  <link rel="stylesheet" href="embeds/tiketkita-embeds.css?v=6">
+  <script>
+    // Apply saved theme before first paint (avoids a light flash in dark mode)
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('tk_theme'); } catch (e) {}
+      if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <video id="wallpaper" muted loop playsinline autoplay preload="auto" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
+
+  <header class="topbar">
+    <div class="wrap bar">
+      <a class="brand" href="#" data-view="home"><img class="logo" src="logo-transparent.avif" alt="" width="46" height="46">Tiket<span>Kita</span></a>
+      <nav id="nav"></nav>
+      <div class="bar-right">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" title="Toggle dark mode"><i data-ic="moon"></i></button>
+        <div id="userbox"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="app"></main>
+
+  <footer class="footer">
+    <div class="wrap foot-in">
+      <div>
+        <div class="brand sm"><img class="logo" src="logo-transparent.avif" alt="" width="38" height="38">Tiket<span>Kita</span></div>
+        <p>Your ticket to unforgettable moments across Malaysia.</p>
+      </div>
+      <div class="foot-links"><a href="#" data-view="home">Home</a><a href="#" data-view="events">Events</a><a href="#" data-view="info">Info</a><a href="#" data-info="faq">FAQ</a></div>
+      <div class="foot-tags"><span><i data-ic="music"></i>Concerts</span><span><i data-ic="tent"></i>Festivals</span><span><i data-ic="briefcase"></i>Conferences</span><span><i data-ic="trophy"></i>Sports</span></div>
+    </div>
+    <div class="wrap foot-copy">© 2026 TiketKita · Made in Malaysia</div>
+  </footer>
+
+  <!-- Shared modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="wallpaper.js?v=3"></script>
+  <script src="embeds/tiketkita-embeds.js?v=6" defer></script>
+  <script src="app.js?v=20"></script>
+</body>
+</html>

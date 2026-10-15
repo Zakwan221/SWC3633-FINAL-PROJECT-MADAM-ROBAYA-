@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TiketKita | Event Ticketing System</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HEADER AND NAVIGATION -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <div class="brand">
+                <h1>TiketKita</h1>
+                <span>Event Ticketing &amp; Venue Booking</span>
+            </div>
+
+            <nav class="navigation"
+                 aria-label="Main navigation">
+
+                <button type="button" id="navEvents">
+                    Events
+                </button>
+
+                <button type="button" id="navBookings" hidden>
+                    My Bookings
+                </button>
+
+                <button type="button" id="navManage" hidden>
+                    Manage Events
+                </button>
+
+                <button type="button" id="navAdmin" hidden>
+                    Admin
+                </button>
+
+                <button type="button" id="btnLogout" hidden>
+                    Log Out
+                </button>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- SYSTEM MESSAGE -->
+        <div id="message"
+             role="status"
+             aria-live="polite"></div>
+
+
+        <!-- WELCOME SECTION -->
+        <section class="welcome-section">
+
+            <p class="welcome-label">
+                WELCOME TO TIKETKITA
+            </p>
+
+            <h2>Discover Events You'll Love</h2>
+
+            <p>
+                Explore upcoming events, find your favourite
+                experiences and book your tickets easily.
+            </p>
+
+        </section>
+
+
+        <!-- LOGIN AND REGISTRATION SECTION -->
+        <section id="authSection" class="content-section">
+
+            <div class="section-heading">
+
+                <h2 id="authTitle">
+                    Welcome Back
+                </h2>
+
+                <p id="authSubtitle">
+                    Log in to manage your events and bookings.
+                </p>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+            <div class="form-card" id="loginPanel">
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn-primary">
+                        Log In
+                    </button>
+
+                </form>
+
+
+                <p class="form-note">
+                    New to TiketKita?
+
+                    <button type="button"
+                            id="btnShowRegister">
+                        Create an account
+                    </button>
+                </p>
+
+            </div>
+
+
+            <!-- CUSTOMER REGISTRATION FORM -->
+            <div class="form-card"
+                 id="registerPanel"
+                 hidden>
+
+                <form id="registerForm">
+
+                    <div class="form-group">
+
+                        <label for="registerName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="registerName"
+                            name="name"
+                            placeholder="Enter your full name"
+                            maxlength="100"
+                            autocomplete="name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registerEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            name="email"
+                            placeholder="Enter your email"
+                            maxlength="254"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registerPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            name="password"
+                            placeholder="8-72 characters"
+                            minlength="8"
+                            maxlength="72"
+                            autocomplete="new-password"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Re-enter your password"
+                            minlength="8"
+                            maxlength="72"
+                            autocomplete="new-password"
+                            required>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn-primary">
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                <p id="registerFeedback"
+                   role="status"
+                   aria-live="polite"></p>
+
+
+                <p class="form-note">
+                    Already have an account?
+
+                    <button type="button"
+                            id="btnBackToLogin">
+                        Back to Login
+                    </button>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- EVENTS SECTION -->
+        <section id="eventsSection"
+                 class="content-section">
+
+            <div class="section-heading">
+
+                <h2>Explore Events</h2>
+
+                <p>
+                    Find exciting events happening near you.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH FILTERS -->
+            <form id="searchForm" class="filter-form">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    aria-label="Search events"
+                    placeholder="Search events">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    aria-label="City"
+                    placeholder="City">
+
+                <input
+                    type="date"
+                    id="dateInput"
+                    aria-label="Event date">
+
+                <button type="submit"
+                        class="btn-primary">
+                    Search
+                </button>
+
+                <button type="button" id="btnClear">
+                    Clear
+                </button>
+
+            </form>
+
+
+            <!-- EVENT CARDS -->
+            <div id="eventsList" class="events-grid">
+                <p>Events will appear here.</p>
+            </div>
+
+
+            <!-- EVENT DETAILS -->
+            <div id="eventDetails" hidden></div>
+
+        </section>
+
+
+        <!-- CUSTOMER BOOKINGS SECTION -->
+        <section id="bookingsSection"
+                 class="content-section"
+                 hidden>
+
+            <div class="section-heading">
+
+                <h2>My Bookings</h2>
+
+                <p>
+                    View and manage your ticket bookings.
+                </p>
+
+            </div>
+
+            <div id="bookingsList"></div>
+
+        </section>
+
+
+        <!-- ORGANISER SECTION -->
+        <section id="manageSection"
+                 class="content-section"
+                 hidden>
+
+            <div class="section-heading">
+
+                <h2>Event Management</h2>
+
+                <p>
+                    Manage your events and ticket availability.
+                </p>
+
+            </div>
+
+            <div id="manageContent"></div>
+
+        </section>
+
+
+        <!-- ADMIN SECTION -->
+        <section id="adminSection"
+                 class="content-section"
+                 hidden>
+
+            <div class="section-heading">
+
+                <h2>Administration</h2>
+
+                <p>
+                    Manage users, venues and system records.
+                </p>
+
+            </div>
+
+            <div id="adminContent"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <p>
+            &copy; 2026 TiketKita. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff9f1">
+  <meta name="description" content="EventUsMy pastel plus event booking and management application">
+  <title>EventUsMy | Event Ticketing System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"> 
+        <div>
+          <strong>EventUsMy</strong>
+          <small>EVENTS MADE EASY</small>
+        </div> 
+      </div>
+      <p class="side-caption">MY WORKSPACE</p>
+      <nav id="nav" class="side-nav" aria-label="Main navigation"></nav>
+      <div class="sidebar-divider"></div>
+      <div id="who" class="user-box" aria-live="polite"></div>
+      <section id="secAuth" class="account" aria-label="Account access">
+        <h2>Welcome!</h2>
+        <p class="muted">Discover events or sign in to manage your tickets.</p>
+        <button type="button" data-go="login" class="btn btn-main fill">Log in</button>
+        <button type="button" data-go="register" class="btn btn-outline fill side-register">Create an account</button>
+      </section>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar"><div><span class="topbar-small">EVENTUSMY / EVENT TICKETING SYSTEM</span><p>Discover, book and manage events</p></div><span class="semester-pill"><span class="pulse-dot"></span> Your event space</span></header>
+      <main class="container">
+        <p id="msg" class="feedback" role="status" aria-live="polite"></p>
+        <section id="secLogin" class="page-section" hidden>
+          <div class="page-heading"><span class="eyebrow">ACCOUNT / LOGIN</span><h1>Welcome back!</h1><p>Log in to continue booking and managing events.</p></div>
+          <div class="auth-full card-panel">
+            <h2>Log in</h2>
+            <form id="loginForm" class="stack-form">
+              <label>Email address<input type="email" name="email" autocomplete="username" placeholder="you@example.com" required></label>
+              <label>Password<input type="password" name="password" autocomplete="current-password" placeholder="Enter password" required></label>
+              <button type="submit" class="btn btn-main fill">Log in</button>
+            </form>
+            <p class="auth-foot">Don't have an account? <button type="button" class="inline-link" data-go="register">Register here</button></p>
+          </div>
+        </section>
+
+        <section id="secRegister" class="page-section" hidden>
+          <div class="page-heading"><span class="eyebrow">ACCOUNT / REGISTER</span><h1>Create a customer account</h1><p>Join EventUsMy and book your favourite events.</p></div>
+          <div class="auth-full card-panel">
+            <h2>Register</h2>
+            <form id="registerForm" class="stack-form">
+              <label>Full name<input name="name" placeholder="Full name" required></label>
+              <label>Email address<input name="email" type="email" autocomplete="email" placeholder="Email address" required></label>
+              <label>Password (8+ characters)<input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+              <button type="submit" class="btn btn-main fill">Register</button>
+            </form>
+            <p class="auth-foot">Already registered? <button type="button" class="inline-link" data-go="login">Log in here</button></p>
+          </div>
+        </section>
+
+        <section id="secEvents" class="page-section">
+          <div class="welcome-banner">
+            <div class="welcome-copy">
+              <span class="eyebrow">HELLO THERE ✳ WELCOME TO EVENTUSMY</span>
+              <h1>Good events.<br><em>Great memories.</em></h1>
+              <p>From music nights to creative workshops, find something worth looking forward to. Your next event is just a few clicks away.</p>
+              <a href="#filterForm" class="btn btn-main intro-btn">Explore events <span aria-hidden="true">→</span></a>
+              <span class="hero-caption">Browse events · Reserve tickets · Manage bookings</span>
+            </div>
+            <div class="hero-featured-wrap">
+              <div class="feature-decor feature-decor-pink" aria-hidden="true">✳</div>
+              <div class="feature-decor feature-decor-green" aria-hidden="true">✿</div>
+              <div id="heroFeatured" class="hero-featured" aria-live="polite">
+                <div class="feature-card-top"><span class="feature-kicker">ONE TO CHECK OUT</span><span aria-hidden="true">✳</span></div>
+                <span class="feature-intro">Your event spotlight</span>
+                <h2>Discover what's happening.</h2>
+                <p>Upcoming events appear here.</p>
+                <span class="feature-foot">EVENTUSMY <span>✧</span> EVENT PASS</span>
+              </div>
+            </div>
+          </div>
+          <div class="feature-strip" aria-label="EventUsMy highlights">
+            <div><span class="feature-step blue-step">01</span><span><strong>Discover</strong><small>Find an event you love</small></span></div>
+            <div><span class="feature-step pink-step">02</span><span><strong>Book</strong><small>Reserve your tickets</small></span></div>
+            <div><span class="feature-step green-step">03</span><span><strong>Enjoy</strong><small>You're all set!</small></span></div>
+          </div>
+          <div class="section-heading"><div><h2>Explore what’s on <span class="heading-spark" aria-hidden="true">✳</span></h2><p>Search for upcoming events and save your seat.</p></div><span class="heading-tag">✦ Browse events</span></div>
+          <form id="filterForm" class="filter-bar">
+            <label>Event name<input name="search" placeholder="Search events..."></label>
+            <label>City<input name="city" placeholder="e.g. Kuala Lumpur"></label>
+            <label>Date<input name="date" type="date"></label>
+            <div class="filter-actions"><button type="submit" class="btn btn-main">Search</button><button type="button" id="btnClear" class="btn btn-outline">Reset</button></div>
+          </form>
+          <div id="eventList" class="events-grid" aria-live="polite"></div>
+          <div id="eventPager" class="pager"></div>
+        </section>
+
+        <section id="secBooking" class="page-section" hidden>
+          <div class="page-heading"><span class="eyebrow">CUSTOMER / EVENT DETAILS</span><h1>Event details &amp; booking</h1><p>Choose an available ticket type to make a reservation.</p></div>
+          <button type="button" data-go="events" class="btn btn-outline back-link">← Back to events</button>
+          <div id="detail" class="detail-container"></div>
+        </section>
+
+        <section id="secMy" class="page-section" hidden>
+          <div class="page-heading"><span class="eyebrow">CUSTOMER AREA / BOOKINGS</span><h1>Your event plans <span class="heading-spark" aria-hidden="true">♡</span></h1><p>Everything you’ve booked, all in one place.</p></div>
+          <div class="info-strip info-pink"><span class="info-icon">✓</span><div><strong>Your ticket history</strong><p>All your current and past bookings are listed below.</p></div></div>
+          <div class="card-panel"><div class="panel-title"><h2>Booking list</h2><span class="panel-tag pink-tag">Customer</span></div><div id="myList" class="table-scroll"></div></div>
+        </section>
+
+        <section id="secManage" class="page-section" hidden>
+          <div class="page-heading"><span class="eyebrow">ORGANISER / ADMIN EVENTS</span><h1>Event workspace <span class="heading-spark" aria-hidden="true">✳</span></h1><p>Create events, update ticket types and review customer bookings.</p></div>
+          <div class="info-strip info-green"><span class="info-icon">▣</span><div><strong>Event management</strong><p>Manage everything related to the events you organise.</p></div></div>
+          <div id="manageEventsPanel" class="card-panel"><div class="panel-title"><h2>Event list</h2><span class="panel-tag">Events</span></div><div id="manageEvents" class="table-scroll"></div></div>
+          <div id="ttBox" class="card-panel ticket-box" hidden></div>
+          <div id="manageFormPanel" class="card-panel"><div class="panel-title"><h2 id="eventFormHeading">Create New Event</h2><span class="panel-tag">New event</span></div><p id="eventFormHint" class="muted form-description">A Standard ticket type is created automatically. You can add VIP types later.</p>
+            <form id="newEventForm" class="form-grid">
+              <input type="hidden" name="event_id" value="">
+              <div id="organiserField" hidden><label>Organiser<select name="organiser_id" required><option value="">Select organiser</option></select></label></div>
+              <label>Event title<input name="title" placeholder="e.g. Music Festival" required></label>
+              <label class="full-row">Description<input name="description" placeholder="Event description"></label>
+              <label>Venue<select name="venue_id"></select></label>
+              <label>Event date<input name="event_date" type="date" required></label>
+              <label>Start time<input name="start_time" type="time" value="19:00" required></label>
+              <label>End time<input name="end_time" type="time" value="22:00" required></label>
+              <label>Ticket price (RM)<input name="ticket_price" type="number" min="0" step="0.01" value="50" required></label>
+              <label>Total tickets<input name="total_tickets" type="number" min="1" value="100" required></label>
+              <div class="full-row"><button id="eventSaveButton" type="submit" class="btn btn-main">Create Event</button> <button type="button" id="eventFormClear" class="btn btn-outline">Clear / New Event</button></div>
+            </form>
+          </div>
+          <div id="manageBookingsPanel" class="card-panel"><div class="panel-title"><h2>Bookings Overview</h2><span class="panel-tag">Bookings</span></div><div id="manageBookings" class="table-scroll"></div></div>
+        </section>
+
+        <section id="secAdmin" class="page-section" hidden>
+          <div class="page-heading"><span class="eyebrow">ADMIN / MANAGEMENT</span><h1>System management <span class="heading-spark" aria-hidden="true">✳</span></h1><p>Manage registered users and available venues.</p></div>
+          <div class="info-strip info-blue"><span class="info-icon">⚙</span><div><strong>System administration</strong><p>Keep your users and venues up to date.</p></div></div>
+          <div id="adminUsersPanel" class="card-panel"><div class="panel-title"><h2>User Management</h2><span class="panel-tag">Users</span></div><div id="userList" class="table-scroll"></div><h3 class="subhead">Add user</h3>
+            <form id="userForm" class="form-grid">
+              <label>Name<input name="name" required placeholder="Full name"></label>
+              <label>Email<input name="email" type="email" required placeholder="Email address"></label>
+              <label>Password<input name="password" type="password" minlength="8" required></label>
+              <label>Role<select name="role"><option>customer</option><option>organiser</option><option>admin</option></select></label>
+              <div class="full-row"><button type="submit" class="btn btn-main">Add User</button></div>
+            </form>
+          </div>
+          <div id="adminVenuesPanel" class="card-panel"><div class="panel-title"><h2>Venue Management</h2><span class="panel-tag">Venues</span></div><div id="venueList" class="table-scroll"></div><h3 class="subhead">Add venue</h3>
+            <form id="venueForm" class="form-grid">
+              <label>Venue name<input name="name" required placeholder="Venue name"></label>
+              <label>Address<input name="address" required placeholder="Street address"></label>
+              <label>City<input name="city" required placeholder="City"></label>
+              <label>Capacity<input name="capacity" type="number" min="1" required placeholder="Number of people"></label>
+              <div class="full-row"><button type="submit" class="btn btn-main">Add Venue</button></div>
+            </form>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">EventUsMy 2026 · Made for memorable moments</footer>
+    </div>
+  </div>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

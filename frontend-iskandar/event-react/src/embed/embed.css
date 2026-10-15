@@ -1,0 +1,22 @@
+/* Styles for the embeddable <tilted-grid-hero> only.
+   Deliberately no Tailwind preflight (the global reset): this CSS is loaded on the
+   plain-HTML TiketKita site and must not restyle anything outside the hero.
+   Utilities are scanned from the two files below, not the whole project. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+
+@source "../components/ui/tilted-grid-hero.tsx";
+@source "./tilted-hero-element.tsx";
+
+@theme {
+  --color-muted: #1a1e2f;
+  --radius-lg: 0.75rem;
+}
+
+/* <halftone-wordmark-footer> prints each line of its word as a word-only block:
+   the component's text rows and hairline belong to the first block alone. */
+.hwf-wordonly .hwf-top,
+.hwf-wordonly .hwf-rule {
+  display: none;
+}
